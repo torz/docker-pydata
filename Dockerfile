@@ -15,6 +15,7 @@ RUN dpkg-reconfigure locales
 
 RUN apt-get -qq update && \
     apt-get install -y libzmq3 \
+                       libyaml-dev \
                        libzmq3-dev \
                        python3-pip \
                        libblas3 \
