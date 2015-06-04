@@ -30,6 +30,7 @@ RUN apt-get -qq update && \
                        libfreetype6-dev
 
 RUN pip3 install numpy
+RUN pip3 install elasticsearch
 RUN pip3 install jsonschema
 RUN pip3 install scipy
 RUN pip3 install cython
