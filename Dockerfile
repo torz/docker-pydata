@@ -15,6 +15,7 @@ RUN dpkg-reconfigure locales
 
 RUN apt-get -qq update && \
     apt-get install -y libzmq3 \
+                       libyaml-dev \
                        libzmq3-dev \
                        python3-pip \
                        libblas3 \
@@ -35,7 +36,6 @@ RUN pip3 install scipy
 RUN pip3 install cython
 RUN pip3 install numexpr
 RUN pip3 install pandas
-#RUN pip3 install tables
 RUN pip3 install scikit-learn
 RUN pip3 install bokeh
 RUN pip3 install pyzmq
