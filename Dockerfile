@@ -41,7 +41,7 @@ RUN pip3 install bokeh
 RUN pip3 install pyzmq
 RUN pip3 install tornado
 RUN pip3 install jinja2
-RUN pip3 install ipython
+RUN pip3 install jupyter
 RUN pip3 install matplotlib
 
 # might make the image smaller
