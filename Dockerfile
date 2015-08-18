@@ -43,6 +43,7 @@ RUN pip3 install tornado
 RUN pip3 install jinja2
 RUN pip3 install jupyter
 RUN pip3 install matplotlib
+RUN pip3 install seaborn
 
 # might make the image smaller
 RUN apt-get clean
