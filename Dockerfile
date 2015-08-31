@@ -51,6 +51,8 @@ ADD run.sh /
 RUN chmod +x /run.sh
 RUN useradd -U -u 1000 -M -d /srv ipython
 RUN chown -R ipython:ipython /srv
+
+USER ipython
 WORKDIR /srv
 
 VOLUME /srv
