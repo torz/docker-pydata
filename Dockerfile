@@ -27,7 +27,9 @@ RUN apt-get -qq update && \
                        libhdf5-dev \
                        pkg-config \
                        libpng12-dev \
-                       libfreetype6-dev
+                       libfreetype6-dev \
+                       apt-get clean \
+                       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pip3 install numpy
 RUN pip3 install elasticsearch
@@ -45,16 +47,13 @@ RUN pip3 install jupyter
 RUN pip3 install matplotlib
 RUN pip3 install seaborn
 
-# might make the image smaller
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 ADD run.sh /
 RUN chmod +x /run.sh
-
-VOLUME /srv
+RUN useradd -U -u 1000 -M -d /srv ipython
+RUN chown -R ipython:ipython /srv
 WORKDIR /srv
 
+VOLUME /srv
 EXPOSE 8888
 
 # You can mount your own SSL certs as necessary here
