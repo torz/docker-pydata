@@ -27,8 +27,8 @@ RUN apt-get -qq update && \
                        libhdf5-dev \
                        pkg-config \
                        libpng12-dev \
-                       libfreetype6-dev &&
-                       apt-get clean &&
+                       libfreetype6-dev; \
+                       apt-get clean; \
                        rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pip3 install numpy
