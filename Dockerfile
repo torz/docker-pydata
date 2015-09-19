@@ -4,14 +4,6 @@ FROM ubuntu:vivid
 MAINTAINER "rsys.io"
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get -qq update && apt-get install -y language-pack-en
-RUN locale-gen en_GB.UTF-8
-
-ENV LANGUAGE en_GB.UTF-8
-ENV LANG en_GB.UTF-8
-ENV LC_ALL en_GB.UTF-8
-
-RUN dpkg-reconfigure locales
 
 RUN apt-get -qq update && \
     apt-get install -y libzmq3 \
@@ -52,7 +44,6 @@ RUN chmod +x /run.sh
 RUN useradd -U -u 1000 -M -d /srv ipython
 RUN chown -R ipython:ipython /srv
 
-USER ipython
 WORKDIR /srv
 
 VOLUME /srv

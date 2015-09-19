@@ -21,5 +21,7 @@ if [ $USE_HTTP -ne 0 ]; then
   CERTFILE_OPTION=""
 fi
 
-ipython notebook --no-browser --port 8888 --ip=* $CERTFILE_OPTION --NotebookApp.password="$HASH" --matplotlib=inline
+if [ -f /srv/requirements.txt ]; then pip3 install -r /srv/requirements.txt; fi
+
+su ipython -c 'ipython notebook --no-browser --port 8888 --ip=* $CERTFILE_OPTION --NotebookApp.password="$HASH" --matplotlib=inline'
 
