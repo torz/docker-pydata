@@ -6,22 +6,23 @@ MAINTAINER "rsys.io"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qq update && \
-    apt-get install -y libzmq3 \
-                       libyaml-dev \
-                       libzmq3-dev \
-                       python3-pip \
-                       libblas3 \
-                       libblas-dev \
-                       libgfortran3 \
-                       liblapack3 \
-                       liblapack-dev \
-                       gfortran \
-                       libhdf5-dev \
-                       pkg-config \
-                       libpng12-dev \
-                       libfreetype6-dev; \
-                       apt-get clean; \
-                       rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    apt-get install -yq --no-install-recommends \
+    libzmq3 \
+    libyaml-dev \
+    libzmq3-dev \
+    python3-pip \
+    libblas3 \
+    libblas-dev \
+    libgfortran3 \
+    liblapack3 \
+    liblapack-dev \
+    gfortran \
+    libhdf5-dev \
+    pkg-config \
+    libpng12-dev \
+    libfreetype6-dev; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pip3 install numpy
 RUN pip3 install elasticsearch
@@ -41,8 +42,6 @@ RUN pip3 install seaborn
 
 ADD run.sh /
 RUN chmod +x /run.sh
-RUN useradd -U -u 1000 -M -d /srv ipython
-RUN chown -R ipython:ipython /srv
 
 WORKDIR /srv
 
@@ -53,6 +52,7 @@ EXPOSE 8888
 ENV PEM_FILE /tmp/key.pem
 # $PASSWORD will get `unset` within notebook.sh, turned into an IPython style hash
 ENV PASSWORD Dont make this your default
+
 ENV USE_HTTP 0
 
 # Default command to run
